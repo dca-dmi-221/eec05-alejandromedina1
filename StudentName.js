@@ -40,6 +40,7 @@ function wordSearcherIgnoreCase(targetWord, wordsList) {
     targetWord = normalizeWord(targetWord);
     targetWord = wordsListCopy.includes(targetWord);
     console.log(targetWord);
+
 }
 
 function normalizeWord(word) {
@@ -48,6 +49,7 @@ function normalizeWord(word) {
 wordSearcherIgnoreCase(testTargetWordA, testWordsList);
 wordSearcherIgnoreCase(testTargetWordB, testWordsList);
 wordSearcherIgnoreCase(testTargetWordC, testWordsList);
+
 
 
 
@@ -139,9 +141,9 @@ function lettersCounter(objectContainer) {
 let vocalCounter = 0;
 let consonantCounter = 0;
 for (let i = 0; i < objectContainer.list.length; i++) {
-    const referenceWord = objectContainer.list[i];
-    for (let j = 0; j < referenceWord.length; j++) {
-        const word = referenceWord[j];
+    const list = objectContainer.list[i];
+    for (let j = 0; j < list.length; j++) {
+        const word = list[j];
         if (word.toLowerCase() === 'a' || word.toLowerCase() === 'e' || word.toLowerCase() === 'i' || word.toLowerCase() === 'o' || word.toLowerCase() === 'u') {
             vocalCounter++;
         }else{
