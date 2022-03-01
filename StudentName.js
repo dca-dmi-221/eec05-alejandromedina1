@@ -69,6 +69,7 @@ let testSampleList = [
 function wordLengthClassifier(wordsList) {
     // :)
 }
+wordLengthClassifier(testSampleList);
 
 
 /*Dado un string retorna si este es o no un palíndromo. No debe diferenciar entre mayúsculas y minúsculas*/
@@ -99,8 +100,10 @@ let wordArrayA = ["hola", "¿", "cómo", "estás", "?"];
 let wordArrayB = ["te", "ves", "igual", "te", "ves", "igual"];
 
 function arrayJoiner(listA, listB) {
-    // :)
+    const lists = listA.concat(listB);
+    console.log(lists);
 }
+arrayJoiner(wordArrayA,wordArrayB);
 
 
 /*Dado un arreglo de strings indicar qué posiciones del arreglo
