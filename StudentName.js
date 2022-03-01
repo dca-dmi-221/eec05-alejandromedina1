@@ -136,8 +136,22 @@ let containerTestObject = {
 }
 
 function lettersCounter(objectContainer) {
-    // :)
+let vocalCounter = 0;
+let consonantCounter = 0;
+for (let i = 0; i < objectContainer.list.length; i++) {
+    const referenceWord = objectContainer.list[i];
+    for (let j = 0; j < referenceWord.length; j++) {
+        const word = referenceWord[j];
+        if (word.toLowerCase() === 'a' || word.toLowerCase() === 'e' || word.toLowerCase() === 'i' || word.toLowerCase() === 'o' || word.toLowerCase() === 'u') {
+            vocalCounter++;
+        }else{
+            consonantCounter++;
+        }
+    }
 }
+console.log(vocalCounter + ' ; ' + consonantCounter);
+}
+lettersCounter(containerTestObject);
 
 
 /*Dado 2 arreglos de strings retornar un arreglo con todos los strings.*/
@@ -158,8 +172,9 @@ let testWordToExplore = "amar";
 let wordsToVerify = ["amar", "arma", "rana", "mara", "rama", "roma", "amor", "ramon", "omar"];
 
 function anagramVerifier(wordToExplore, listOfWords) {
-    // :)
+        
 }
+anagramVerifier(testWordToExplore, wordsToVerify);
 
 /*Dado un objeto que contiene 2 arreglos, retornar un objeto con 1
 arreglo que contiene las palabras sin vocales.*/
