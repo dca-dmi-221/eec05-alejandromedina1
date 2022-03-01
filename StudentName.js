@@ -114,9 +114,20 @@ let onVerificationWordC = "Gomosos";
 let onVerificationWordD = "Somos";
 
 function palindromeVerifier(word) {
-    // :)
+    word = word.toLowerCase();
+    let referenceWord = word;
+    referenceWord = referenceWord.split('').reverse();
+    referenceWord = referenceWord.join('');
+    if (word === referenceWord) {
+        console.log(word + ' is a palindrome'); 
+    }else{
+        console.log(word + ' is not a palindrome'); 
+    }
 }
-
+palindromeVerifier(onVerificationWordA);
+palindromeVerifier(onVerificationWordB);
+palindromeVerifier(onVerificationWordC);
+palindromeVerifier(onVerificationWordD);
 
 /*Dado un objeto que contiene una lista de palabras contar el
 número de letras vocales y consonantes y retornarlo en un arreglo de 2 posiciones.*/
