@@ -4,7 +4,12 @@
 
 let testWord = "esternocleidomastoideo";
 function wordCutter(word) {
-   // :)
+   word = word.split('');
+   console.log(word);
+   word = word.sort(function(){ return Math.random()-0.5});
+   word.forEach(element => {
+    console.log(element);
+   });
 }
 wordCutter(testWord);
 
