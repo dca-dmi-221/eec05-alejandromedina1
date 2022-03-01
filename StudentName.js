@@ -41,8 +41,9 @@ function wordSearcherIgnoreCase(targetWord, wordsList) {
     targetWord = wordsListCopy.includes(targetWord);
     console.log(targetWord);
 }
-function normalizeWord(word){
-        return word = word.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+
+function normalizeWord(word) {
+    return word = word.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
 }
 wordSearcherIgnoreCase(testTargetWordA, testWordsList);
 wordSearcherIgnoreCase(testTargetWordB, testWordsList);
@@ -67,7 +68,40 @@ let testSampleList = [
 ];
 
 function wordLengthClassifier(wordsList) {
-    // :)
+    longestWord(wordsList);
+    shortestWord(wordsList);
+    averageWordLength(wordsList);
+}
+
+function longestWord(wordsList) {
+    let longest = wordsList[0];
+    wordsList.forEach(element => {
+        if (element.length > longest.length) {
+            longest = element;
+        }
+    });
+    console.log(longest);
+}
+
+function shortestWord(wordsList){
+    let shortest = wordsList[0];
+    wordsList.forEach(element => {
+        if (element.length < shortest.length) {
+            shortest = element;
+        }
+    });
+    console.log(shortest);
+}
+
+function averageWordLength(wordsList){
+    let wordsLengthList = [];
+    wordsList.forEach(element => {
+        wordsLengthList.push(element.length);
+    });
+    const initialValue = 0
+    const finalLenghts = wordsLengthList.reduce((previousValue, currentValue) => previousValue + currentValue, initialValue);
+    const averageLength = finalLenghts/wordsLengthList.length;
+    console.log(averageLength);
 }
 wordLengthClassifier(testSampleList);
 
@@ -103,7 +137,7 @@ function arrayJoiner(listA, listB) {
     const lists = listA.concat(listB);
     console.log(lists);
 }
-arrayJoiner(wordArrayA,wordArrayB);
+arrayJoiner(wordArrayA, wordArrayB);
 
 
 /*Dado un arreglo de strings indicar qué posiciones del arreglo
