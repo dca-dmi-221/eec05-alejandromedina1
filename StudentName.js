@@ -35,12 +35,14 @@ let testWordsList = [
 
 // pruebe para cada palabra A, B y C
 function wordSearcherIgnoreCase(targetWord, wordsList) {
-    for (let i = 0; i < wordsList.length; i++) {
-        wordsList[i] = wordsList[i].toLowerCase();
-    }
+    let wordsListCopy = wordsList.map((element) => element.toLowerCase());
     targetWord = targetWord.toLowerCase();
-    targetWord = wordsList.includes(targetWord);
+    targetWord = normalizeWord(targetWord);
+    targetWord = wordsListCopy.includes(targetWord);
     console.log(targetWord);
+}
+function normalizeWord(word){
+        return word = word.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
 }
 wordSearcherIgnoreCase(testTargetWordA, testWordsList);
 wordSearcherIgnoreCase(testTargetWordB, testWordsList);
