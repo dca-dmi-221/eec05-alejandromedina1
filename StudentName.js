@@ -228,5 +228,16 @@ let testListA = ["amor", "sabor", "calor", "firma", "mara"];
 let testListB = ["roma", "robar", "portar", "arma", "mora"];
 
 function doubleListVerifier(listA, listB) {
-    // :)
+    let counter = 0;
+    for (let i = 0; i < listA.length; i++) {
+        for (let j = 0; j < listB.length; j++) {
+            listA[i] = listA[i].split('').reverse().join('');
+            if (listA[i] === listB[j]) {
+                counter++;
+            }
+        }
+    }
+    return counter;
 }
+
+console.log(doubleListVerifier(testListA,testListB));
