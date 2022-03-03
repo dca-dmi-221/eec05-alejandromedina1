@@ -178,14 +178,14 @@ let wordsToVerify = ["amar", "arma", "rana", "mara", "rama", "roma", "amor", "ra
 
 function anagramVerifier(wordToExplore, listOfWords) {
     let array = [];
-  for (let i = 0; i < listOfWords.length; i++) {
-      wordToExplore = wordToExplore.split('').sort().join('');
-      listOfWords[i] = listOfWords[i].split('').sort().join('');
-      if (wordToExplore === listOfWords[i]) {
-          array.push(i);
-      }
-  }
-  console.log(array);
+    for (let i = 0; i < listOfWords.length; i++) {
+        wordToExplore = wordToExplore.split('').sort().join('');
+        listOfWords[i] = listOfWords[i].split('').sort().join('');
+        if (wordToExplore === listOfWords[i]) {
+            array.push(i);
+        }
+    }
+    console.log(array);
 }
 anagramVerifier(testWordToExplore, wordsToVerify);
 
@@ -200,13 +200,11 @@ let testObjMultiContainer = {
 function vocalsRemoverFromObject(objectMultiContainer) {
     let lists = objectMultiContainer.listA.concat(objectMultiContainer.listB);
     for (let i = 0; i < lists.length; i++) {
-        lists[i] = lists[i].replace(/[aeiou]/g,'');   
+        lists[i] = lists[i].replace(/[aeiou]/g, '');
     }
-    console.log(lists);
+    return lists;
 }
-vocalsRemoverFromObject(testObjMultiContainer);
-
-//console.log(vocalsRemoverFromObject(testObjMultiContainer));
+console.log(vocalsRemoverFromObject(testObjMultiContainer));
 
 /*Dado un arreglo de palabras reemplazar la última vocal por una x y retornar dicho arreglo.*/
 
@@ -214,7 +212,7 @@ let someWordsToTest = ["compañeros", "estudiantes", "señores", "amigos", "grad
 
 function lastVocalReplacer(words) {
     for (let i = 0; i < words.length; i++) {
-        words[i] = words[i].replace(/.$/,'x');
+        words[i] = words[i].replace(/.$/, 'x');
     }
     console.log(words);
 }
