@@ -85,7 +85,7 @@ function longestWord(wordsList) {
     console.log(longest);
 }
 
-function shortestWord(wordsList){
+function shortestWord(wordsList) {
     let shortest = wordsList[0];
     wordsList.forEach(element => {
         if (element.length < shortest.length) {
@@ -95,14 +95,14 @@ function shortestWord(wordsList){
     console.log(shortest);
 }
 
-function averageWordLength(wordsList){
+function averageWordLength(wordsList) {
     let wordsLengthList = [];
     wordsList.forEach(element => {
         wordsLengthList.push(element.length);
     });
     const initialValue = 0
     const finalLenghts = wordsLengthList.reduce((previousValue, currentValue) => previousValue + currentValue, initialValue);
-    const averageLength = finalLenghts/wordsLengthList.length;
+    const averageLength = finalLenghts / wordsLengthList.length;
     console.log(averageLength);
 }
 wordLengthClassifier(testSampleList);
@@ -121,9 +121,9 @@ function palindromeVerifier(word) {
     referenceWord = referenceWord.split('').reverse();
     referenceWord = referenceWord.join('');
     if (word === referenceWord) {
-        console.log(word + ' is a palindrome'); 
-    }else{
-        console.log(word + ' is not a palindrome'); 
+        console.log(word + ' is a palindrome');
+    } else {
+        console.log(word + ' is not a palindrome');
     }
 }
 palindromeVerifier(onVerificationWordA);
@@ -138,20 +138,23 @@ let containerTestObject = {
 }
 
 function lettersCounter(objectContainer) {
-let vocalCounter = 0;
-let consonantCounter = 0;
-for (let i = 0; i < objectContainer.list.length; i++) {
-    const list = objectContainer.list[i];
-    for (let j = 0; j < list.length; j++) {
-        const word = list[j];
-        if (word.toLowerCase() === 'a' || word.toLowerCase() === 'e' || word.toLowerCase() === 'i' || word.toLowerCase() === 'o' || word.toLowerCase() === 'u') {
-            vocalCounter++;
-        }else{
-            consonantCounter++;
+    let vocalCounter = 0;
+    let consonantCounter = 0;
+    let numberOfLetters = [];
+    for (let i = 0; i < objectContainer.list.length; i++) {
+        const word = objectContainer.list[i];
+        for (let j = 0; j < word.length; j++) {
+            const letter = word[j];
+            if (letter.toLowerCase() === 'a' || letter.toLowerCase() === 'e' || letter.toLowerCase() === 'i' || letter.toLowerCase() === 'o' || letter.toLowerCase() === 'u') {
+                vocalCounter++;
+            } else {
+                consonantCounter++;
+            }
         }
     }
-}
-console.log(vocalCounter + ' ; ' + consonantCounter);
+    numberOfLetters.push(vocalCounter);
+    numberOfLetters.push(consonantCounter);
+    console.log(numberOfLetters);
 }
 lettersCounter(containerTestObject);
 
@@ -174,7 +177,7 @@ let testWordToExplore = "amar";
 let wordsToVerify = ["amar", "arma", "rana", "mara", "rama", "roma", "amor", "ramon", "omar"];
 
 function anagramVerifier(wordToExplore, listOfWords) {
-        
+   
 }
 anagramVerifier(testWordToExplore, wordsToVerify);
 
@@ -187,7 +190,7 @@ let testObjMultiContainer = {
 };
 
 function vocalsRemoverFromObject(objectMultiContainer) {
-    // :)
+ 
 }
 
 //console.log(vocalsRemoverFromObject(testObjMultiContainer));
