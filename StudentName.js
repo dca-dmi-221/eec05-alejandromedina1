@@ -177,7 +177,15 @@ let testWordToExplore = "amar";
 let wordsToVerify = ["amar", "arma", "rana", "mara", "rama", "roma", "amor", "ramon", "omar"];
 
 function anagramVerifier(wordToExplore, listOfWords) {
-   
+    let array = [];
+  for (let i = 0; i < listOfWords.length; i++) {
+      wordToExplore = wordToExplore.split('').sort().join('');
+      listOfWords[i] = listOfWords[i].split('').sort().join('');
+      if (wordToExplore === listOfWords[i]) {
+          array.push(i);
+      }
+  }
+  console.log(array);
 }
 anagramVerifier(testWordToExplore, wordsToVerify);
 
@@ -193,7 +201,6 @@ function vocalsRemoverFromObject(objectMultiContainer) {
     let lists = objectMultiContainer.listA.concat(objectMultiContainer.listB);
     for (let i = 0; i < lists.length; i++) {
         lists[i] = lists[i].replace(/[aeiou]/g,'');   
-        
     }
     console.log(lists);
 }
