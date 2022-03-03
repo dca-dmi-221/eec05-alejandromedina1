@@ -6,7 +6,6 @@ let testWord = "esternocleidomastoideo";
 
 function wordCutter(word) {
     word = word.split('');
-    console.log(word);
     word = word.sort(function () {
         return Math.random() - 0.5
     });
@@ -39,16 +38,15 @@ function wordSearcherIgnoreCase(targetWord, wordsList) {
     targetWord = targetWord.toLowerCase();
     targetWord = normalizeWord(targetWord);
     targetWord = wordsListCopy.includes(targetWord);
-    console.log(targetWord);
-
+    return targetWord;
 }
 
 function normalizeWord(word) {
     return word = word.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
 }
-wordSearcherIgnoreCase(testTargetWordA, testWordsList);
-wordSearcherIgnoreCase(testTargetWordB, testWordsList);
-wordSearcherIgnoreCase(testTargetWordC, testWordsList);
+console.log(wordSearcherIgnoreCase(testTargetWordA, testWordsList));
+console.log(wordSearcherIgnoreCase(testTargetWordB, testWordsList));
+console.log(wordSearcherIgnoreCase(testTargetWordC, testWordsList));
 
 
 
@@ -138,7 +136,7 @@ let containerTestObject = {
 }
 
 function lettersCounter(objectContainer) {
-    let vocalCounter = 0;
+    let vowelCounter = 0;
     let consonantCounter = 0;
     let numberOfLetters = [];
     for (let i = 0; i < objectContainer.list.length; i++) {
@@ -146,17 +144,17 @@ function lettersCounter(objectContainer) {
         for (let j = 0; j < word.length; j++) {
             const letter = word[j];
             if (letter.toLowerCase() === 'a' || letter.toLowerCase() === 'e' || letter.toLowerCase() === 'i' || letter.toLowerCase() === 'o' || letter.toLowerCase() === 'u') {
-                vocalCounter++;
+                vowelCounter++;
             } else {
                 consonantCounter++;
             }
         }
     }
-    numberOfLetters.push(vocalCounter);
+    numberOfLetters.push(vowelCounter);
     numberOfLetters.push(consonantCounter);
-    console.log(numberOfLetters);
+    return numberOfLetters
 }
-lettersCounter(containerTestObject);
+console.log(lettersCounter(containerTestObject));
 
 
 /*Dado 2 arreglos de strings retornar un arreglo con todos los strings.*/
@@ -165,9 +163,9 @@ let wordArrayB = ["te", "ves", "igual", "te", "ves", "igual"];
 
 function arrayJoiner(listA, listB) {
     const lists = listA.concat(listB);
-    console.log(lists);
+    return lists;
 }
-arrayJoiner(wordArrayA, wordArrayB);
+console.log(arrayJoiner(wordArrayA, wordArrayB));
 
 
 /*Dado un arreglo de strings indicar qué posiciones del arreglo
@@ -185,9 +183,9 @@ function anagramVerifier(wordToExplore, listOfWords) {
             array.push(i);
         }
     }
-    console.log(array);
+    return array;
 }
-anagramVerifier(testWordToExplore, wordsToVerify);
+console.log(anagramVerifier(testWordToExplore, wordsToVerify));
 
 /*Dado un objeto que contiene 2 arreglos, retornar un objeto con 1
 arreglo que contiene las palabras sin vocales.*/
@@ -211,12 +209,16 @@ console.log(vocalsRemoverFromObject(testObjMultiContainer));
 let someWordsToTest = ["compañeros", "estudiantes", "señores", "amigos", "graduandos", "artistas", "universitarios"];
 
 function lastVocalReplacer(words) {
+    const vowels = ['a', 'e', 'i', 'o', 'u'];
     for (let i = 0; i < words.length; i++) {
-        words[i] = words[i].replace(/.$/, 'x');
+        words[i] = words[i].split('').reverse();
+        let letter = words[i].find((array, element, pos) => array[element] === vowels[pos]);
+        words[i] = words[i].join('').replace(letter, 'x');
+        words[i] = words[i].split('').reverse().join('');
     }
-    console.log(words);
+    return words
 }
-lastVocalReplacer(someWordsToTest);
+console.log(lastVocalReplacer(someWordsToTest));
 
 
 /*Dada una lista de palabras verificar si alguna de las palabras es la
@@ -240,4 +242,4 @@ function doubleListVerifier(listA, listB) {
     return counter;
 }
 
-console.log(doubleListVerifier(testListA,testListB));
+console.log(doubleListVerifier(testListA, testListB));
