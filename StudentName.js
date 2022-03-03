@@ -200,8 +200,12 @@ function vocalsRemoverFromObject(objectMultiContainer) {
 let someWordsToTest = ["compañeros", "estudiantes", "señores", "amigos", "graduandos", "artistas", "universitarios"];
 
 function lastVocalReplacer(words) {
-    // :)
+    for (let i = 0; i < words.length; i++) {
+        words[i] = words[i].replace(/.$/,'x');
+    }
+    console.log(words);
 }
+lastVocalReplacer(someWordsToTest);
 
 
 /*Dada una lista de palabras verificar si alguna de las palabras es la
