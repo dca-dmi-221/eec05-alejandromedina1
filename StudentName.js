@@ -3,8 +3,15 @@
 /*Dada una cadena de texto (string) separe y muestre en consola los caracteres de forma desordenada uno por línea, 1 caracter a la vez.*/
 
 let testWord = "esternocleidomastoideo";
+
 function wordCutter(word) {
-   // :)
+    word = word.split('');
+    word = word.sort(function () {
+        return Math.random() - 0.5
+    });
+    word.forEach(element => {
+        console.log(element);
+    });
 }
 wordCutter(testWord);
 
@@ -27,8 +34,20 @@ let testWordsList = [
 
 // pruebe para cada palabra A, B y C
 function wordSearcherIgnoreCase(targetWord, wordsList) {
-   // :)
+    let wordsListCopy = wordsList.map((element) => element.toLowerCase());
+    targetWord = targetWord.toLowerCase();
+    targetWord = normalizeWord(targetWord);
+    targetWord = wordsListCopy.includes(targetWord);
+    return targetWord;
 }
+
+function normalizeWord(word) {
+    return word = word.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+}
+console.log(wordSearcherIgnoreCase(testTargetWordA, testWordsList));
+console.log(wordSearcherIgnoreCase(testTargetWordB, testWordsList));
+console.log(wordSearcherIgnoreCase(testTargetWordC, testWordsList));
+
 
 
 
@@ -49,8 +68,42 @@ let testSampleList = [
 ];
 
 function wordLengthClassifier(wordsList) {
-    // :)
+    longestWord(wordsList);
+    shortestWord(wordsList);
+    averageWordLength(wordsList);
 }
+
+function longestWord(wordsList) {
+    let longest = wordsList[0];
+    wordsList.forEach(element => {
+        if (element.length > longest.length) {
+            longest = element;
+        }
+    });
+    console.log(longest);
+}
+
+function shortestWord(wordsList) {
+    let shortest = wordsList[0];
+    wordsList.forEach(element => {
+        if (element.length < shortest.length) {
+            shortest = element;
+        }
+    });
+    console.log(shortest);
+}
+
+function averageWordLength(wordsList) {
+    let wordsLengthList = [];
+    wordsList.forEach(element => {
+        wordsLengthList.push(element.length);
+    });
+    const initialValue = 0
+    const finalLenghts = wordsLengthList.reduce((previousValue, currentValue) => previousValue + currentValue, initialValue);
+    const averageLength = finalLenghts / wordsLengthList.length;
+    console.log(averageLength);
+}
+wordLengthClassifier(testSampleList);
 
 
 /*Dado un string retorna si este es o no un palíndromo. No debe diferenciar entre mayúsculas y minúsculas*/
@@ -61,51 +114,94 @@ let onVerificationWordC = "Gomosos";
 let onVerificationWordD = "Somos";
 
 function palindromeVerifier(word) {
-   // :)
+    word = word.toLowerCase();
+    let referenceWord = word;
+    referenceWord = referenceWord.split('').reverse();
+    referenceWord = referenceWord.join('');
+    if (word === referenceWord) {
+        console.log(word + ' is a palindrome');
+    } else {
+        console.log(word + ' is not a palindrome');
+    }
 }
-
+palindromeVerifier(onVerificationWordA);
+palindromeVerifier(onVerificationWordB);
+palindromeVerifier(onVerificationWordC);
+palindromeVerifier(onVerificationWordD);
 
 /*Dado un objeto que contiene una lista de palabras contar el
 número de letras vocales y consonantes y retornarlo en un arreglo de 2 posiciones.*/
 let containerTestObject = {
-    list:["Cumbamba", "Oreja", "Nariz", "Ojo", "Lengua", "Diente"]
+    list: ["Cumbamba", "Oreja", "Nariz", "Ojo", "Lengua", "Diente"]
 }
+
 function lettersCounter(objectContainer) {
-   // :)
+    let vowelCounter = 0;
+    let consonantCounter = 0;
+    let numberOfLetters = [];
+    for (let i = 0; i < objectContainer.list.length; i++) {
+        const word = objectContainer.list[i];
+        for (let j = 0; j < word.length; j++) {
+            const letter = word[j];
+            if (letter.toLowerCase() === 'a' || letter.toLowerCase() === 'e' || letter.toLowerCase() === 'i' || letter.toLowerCase() === 'o' || letter.toLowerCase() === 'u') {
+                vowelCounter++;
+            } else {
+                consonantCounter++;
+            }
+        }
+    }
+    numberOfLetters.push(vowelCounter);
+    numberOfLetters.push(consonantCounter);
+    return numberOfLetters
 }
+console.log(lettersCounter(containerTestObject));
 
 
 /*Dado 2 arreglos de strings retornar un arreglo con todos los strings.*/
-let wordArrayA = ["hola", "¿" ,"cómo", "estás", "?"];
-let wordArrayB = ["te", "ves" ,"igual", "te", "ves", "igual"];
+let wordArrayA = ["hola", "¿", "cómo", "estás", "?"];
+let wordArrayB = ["te", "ves", "igual", "te", "ves", "igual"];
 
 function arrayJoiner(listA, listB) {
- // :)
+    const lists = listA.concat(listB);
+    return lists;
 }
+console.log(arrayJoiner(wordArrayA, wordArrayB));
 
 
 /*Dado un arreglo de strings indicar qué posiciones del arreglo
 son anagramas de una palabra base (recibida como parámetro), retorne las posiciones en un arreglo.*/
 
 let testWordToExplore = "amar";
-let wordsToVerify = ["amar", "arma", "rana" , "mara", "rama", "roma", "amor", "ramon", "omar"];
+let wordsToVerify = ["amar", "arma", "rana", "mara", "rama", "roma", "amor", "ramon", "omar"];
 
 function anagramVerifier(wordToExplore, listOfWords) {
-   // :)
+    let array = [];
+    for (let i = 0; i < listOfWords.length; i++) {
+        wordToExplore = wordToExplore.split('').sort().join('');
+        listOfWords[i] = listOfWords[i].split('').sort().join('');
+        if (wordToExplore === listOfWords[i]) {
+            array.push(i);
+        }
+    }
+    return array;
 }
+console.log(anagramVerifier(testWordToExplore, wordsToVerify));
 
 /*Dado un objeto que contiene 2 arreglos, retornar un objeto con 1
 arreglo que contiene las palabras sin vocales.*/
 
 let testObjMultiContainer = {
-    listA : ["piraña", "cachama", "tilapia", "trucha", "carpa", "salmón"],
-    listB : ["rinoceronte", "elefante", "jirafa", "tigre", "gacela", "ñú"]
+    listA: ["piraña", "cachama", "tilapia", "trucha", "carpa", "salmón"],
+    listB: ["rinoceronte", "elefante", "jirafa", "tigre", "gacela", "ñú"]
 };
 
 function vocalsRemoverFromObject(objectMultiContainer) {
-    // :)
+    let lists = objectMultiContainer.listA.concat(objectMultiContainer.listB);
+    for (let i = 0; i < lists.length; i++) {
+        lists[i] = lists[i].replace(/[aeiou]/g, '');
+    }
+    return lists;
 }
-
 console.log(vocalsRemoverFromObject(testObjMultiContainer));
 
 /*Dado un arreglo de palabras reemplazar la última vocal por una x y retornar dicho arreglo.*/
@@ -113,8 +209,16 @@ console.log(vocalsRemoverFromObject(testObjMultiContainer));
 let someWordsToTest = ["compañeros", "estudiantes", "señores", "amigos", "graduandos", "artistas", "universitarios"];
 
 function lastVocalReplacer(words) {
-    // :)
+    const vowels = ['a', 'e', 'i', 'o', 'u'];
+    for (let i = 0; i < words.length; i++) {
+        words[i] = words[i].split('').reverse();
+        let letter = words[i].find((array, element, pos) => array[element] === vowels[pos]);
+        words[i] = words[i].join('').replace(letter, 'x');
+        words[i] = words[i].split('').reverse().join('');
+    }
+    return words
 }
+console.log(lastVocalReplacer(someWordsToTest));
 
 
 /*Dada una lista de palabras verificar si alguna de las palabras es la
@@ -122,9 +226,20 @@ versión al revés de alguna de las palabras de una segunda lista,
 debe contar las identificadas y retornar un objeto con ese conteo.*/
 
 
-let testListA = ["amor", "sabor", "calor","firma", "mara"];
+let testListA = ["amor", "sabor", "calor", "firma", "mara"];
 let testListB = ["roma", "robar", "portar", "arma", "mora"];
 
 function doubleListVerifier(listA, listB) {
-    // :)
+    let counter = 0;
+    for (let i = 0; i < listA.length; i++) {
+        for (let j = 0; j < listB.length; j++) {
+            listA[i] = listA[i].split('').reverse().join('');
+            if (listA[i] === listB[j]) {
+                counter++;
+            }
+        }
+    }
+    return counter;
 }
+
+console.log(doubleListVerifier(testListA, testListB));
